@@ -1,0 +1,125 @@
+<html>
+<head>
+   <title>Welcome to BusinessCape/FamilyCape</title>
+   <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>
+
+   <script>
+      $(function() {
+         $('#left-tile').click(function() {
+            window.location = 'http://businesscape.com/';
+         });
+         $('#right-tile').click(function() {
+            window.location = 'https://familycape.com/';
+         });
+
+         var cName = 'unhovered-tile';
+         $('.my-tile').hover(function() {
+            if ($(this).attr('id') == 'left-tile')
+               $('#right-tile').addClass(cName);
+            else $('#left-tile').addClass(cName);
+
+         }, function() {
+            $('.my-tile').removeClass(cName);
+         });
+      });
+   </script>
+
+   <style>
+      #left-tile {
+         /*float:         left;*/
+         position:      absolute;
+         background-color:    /*#5bc0de;*/ #fafafa;
+         border-top-right-radius:    0;
+         border-bottom-right-radius:    0;
+      }
+      #right-tile {
+         /*float:         right;*/
+         background-color: #fafafa;    /*#f1c954; #0e9d57;*/
+         position:      absolute;
+         left:          50%;
+         /*transform:     translateX(-50%);*/
+         border-top-left-radius:    0;
+         border-bottom-left-radius:    0;
+      }
+
+      .my-tile {
+         width:         50%;
+         height:        90%;
+         border-radius: 10px;
+         text-align:    center;
+         overflow:      hidden;
+         /*opacity:       0.9;
+         filter:        blur(3px);*/
+      }
+      .unhovered-tile {
+         opacity:       0.9;
+         filter:        blur(3px);
+      }
+      .my-tile:hover {
+         /*opacity: 1;
+         filter:  none;*/
+         cursor:  pointer;
+      }
+
+      body {
+         /*padding:       0;
+         margin:        0;*/
+         margin:        40px;
+         /*background-color:    #f1c954;*/
+         background-color:    #eeeeee;
+      }
+      #tile-container {
+         position:      relative;
+         width:         100%;
+         height:        100%;
+      }
+      .tile-img {
+         width:         100%;
+         height:        100%;
+      }
+      #left-img-bottom {
+         height:        20px;
+      }
+      #right-img-top, #left-img-top {
+         /*width:         558px;
+         height:        200px;*/
+         max-height:    200px;
+         max-width:     558px;
+         width:         90%;
+      }
+      #left-img-bottom, #right-img-bottom {
+         height:        100%;
+      }
+
+      #left-img-top, #right-img-top {
+         /*padding:       8px;*/
+         margin:        8px;
+         padding:       8px;
+         /*background-color:    #eeeeee;*/
+      }
+   </style>
+</head>
+<body>
+
+   <center style='color:#8495a1'>Select website to continue</center></br>
+
+   <div id='tile-container'>
+      <div id='left-tile' class='my-tile'>
+         <!-- <img class='tile-img' id='left-img' src='../assets/businesscape1.png'> -->
+         <img class='tile-img' id='left-img-top' src='../assets/familycape/split-select/logo-businesscape.png'>
+         <img class='tile-img' id='left-img-bottom' src='../assets/familycape/split-select/bus_scrot.png'>
+
+         Left side
+      </div>
+
+      <div id='right-tile' class='my-tile'>
+         <!-- <img class='tile-img' id='right-img' src='../assets/familydebt1.png'> -->
+         <img class='tile-img' id='right-img-top' src='../assets/familycape/logo.png'>
+         <img class='tile-img' id='right-img-bottom' src='../assets/familycape/split-select/fam_scrot.png'>
+
+         Right side
+      </div>
+   </div>
+</body>
+</html>
+
