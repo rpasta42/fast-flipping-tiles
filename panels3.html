@@ -2,15 +2,27 @@
 <head>
    <title>Welcome to BusinessCape/FamilyCape</title>
    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>
+   <!-- Latest compiled and minified CSS -->
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+   <!-- Optional theme -->
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+   <!-- Latest compiled and minified JavaScript -->
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
    <script>
       $(function() {
-         $('#left-tile').click(function() {
+         var busId = '#btn-businesscape'; //'#left-tile'r
+         var famId = '#btn-familycape'; //'#right-tile'
+         $(busId).click(function() {
             window.location = 'http://businesscape.com/';
          });
-         $('#right-tile').click(function() {
+         $(famId).click(function() {
             window.location = 'https://familycape.com/';
          });
+
+         $('#btn-businesscape, #btn-familycape').addClass('btn-primary'); //btn-warning, btn-success
 
          var cName = 'unhovered-tile';
          $('.my-tile').hover(function() {
@@ -125,6 +137,17 @@
       .desc-txt {
          padding:       25px;
          margin:        10px;
+      }
+      #top-text {
+         text-align:    center;
+         font-size:     150%;
+         color:         #8495a1;
+      }
+      #btn-businesscape, #btn-familycape {
+         margin-top:    8px;
+         width:         50%;
+         max-width:     250px;
+         min-width:     150px;
       }
    </style>
 
@@ -282,11 +305,14 @@
 </head>
 <body>
 
-   <center style='color:#8495a1'>Select website to continue</center></br>
+   <div id='top-text'>Select website to continue</div>
+   <!-- <center style='color:#8495a1'>Select website to continue</center> -->
+   </br>
 
    <div id='tile-container'>
       <div id='left-tile' class='my-tile'>
          <!-- <img class='tile-img' id='left-img' src='../assets/businesscape1.png'> -->
+         <button id='btn-businesscape' class='btn'>Go to Business Cape</button>
          <div class='tile-front'>
             <img class='tile-img' id='left-img-top' src='../assets/familycape/split-select/logo-businesscape.png'>
             <img class='tile-img' id='left-img-bottom' src='../assets/familycape/split-select/bus_scrot.png'>
@@ -302,6 +328,7 @@
       </div>
 
       <div id='right-tile' class='my-tile'>
+         <button id='btn-familycape' class='btn'>Go to Family Cape</button>
          <div class='tile-front'>
             <!-- <img class='tile-img' id='right-img' src='../assets/familydebt1.png'> -->
             <img class='tile-img' id='right-img-top' src='../assets/familycape/logo.png'>
