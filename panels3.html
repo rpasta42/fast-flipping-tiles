@@ -60,7 +60,7 @@
          /*opacity:       0.9;
          filter:        blur(3px);*/
       }
-      .unhovered-tile {
+      .unhovered-tile-kk {
          opacity:       0.9;
          filter:        blur(3px);
       }
@@ -110,18 +110,22 @@
    </style>
 
    <style>
+         /*opacity:       0.9;
+         filter:        blur(3px);*/
+
       @keyframes rotate-y-forward-90 {
-         from {transform: rotateY(0deg);}
-         to   {transform: rotateY(90deg);}
+         from {transform: rotateY(0deg); opacity: 1; filter: blur(0px);}
+         to   {transform: rotateY(90deg); opacity: 0.1; filter: blur(3px);}
       }
       @keyframes rotate-y-backwards-90 {
-         from {transform: rotateY(90deg);}
-         to   {transform: rotateY(0deg);}
+         from {transform: rotateY(90deg); opacity:0.0; filter:blur(3px); }
+         to   {transform: rotateY(0deg); opacity: 1; filter:blur(0px); }
       }
    </style>
 
    <script>
-      var tileRotTime = 0.5;
+      var checkIfOutTime = 150;//400;
+      var tileRotTime = 0.2; //default:0.2; kinda slow: 0.5 //!!!USE 5.0 seconds for demo of fades
       var tileRotTimeMilli = tileRotTime * 1000;
 
       function animate(el, animationName, duration) {
@@ -131,44 +135,68 @@
       }
 
       $(function() {
-
          $('.my-tile').find('.tile-front').show();
          $('.my-tile').find('.tile-back').hide();
 
-         //old
-         //inactive = default
-         //rotating90 = started rotation
-         //rotating180 = finsihed half rotation
-         //flipped_start = just finished flipping, need to wait before rotating back
-         //flipped_ready = waited minimum amount, ready to rotate back
-         //reversing = rotating back
-         //inactive/finished = either use separate state, or just revert to inactive
-         //status of rotation
-         //(inactive, rotating90, rotating180, flipped_start, flipped-ready, reversing, inactive/finished)
+         /* old
+         inactive = default
+         rotating90 = started rotation
+         rotating180 = finsihed half rotation
+         flipped_start = just finished flipping, need to wait before rotating back
+         flipped_ready = waited minimum amount, ready to rotate back
+         reversing = rotating back
+         inactive/finished = either use separate state, or just revert to inactive
+         status of rotation
+         (inactive, rotating90, rotating180, flipped_start, flipped-ready, reversing, inactive/finished)*/
 
-         //new statuses = [inactive, flipped-ready]
+         //new statuses = [inactive, started-forward, started-reverse, flipped-ready]
          var tileState = { 'left-tile':'inactive', 'right-tile':'inactive' };
+
+         /*function periodic() {
+            console.log('left hover: ' + $('#left-tile:hover').length);
+            console.log('right hover: ' + $('#right-tile:hover').length);
+            setTimeout(periodic, 1000);
+         }
+         periodic();*/
 
          //t = hovered object, tId = 'left-tile' or 'right-tile'
          function onMoveIn(t, tId, front, back) {
+            /*for (var tileId in tileState) {
+               if (tileState[tileId] != 'inactive') {
+                  //return;
+                  //setTimeout(function () { onMoveIn(t, tId, front, back); }, checkIfOutTime);
+               }
+            }*/
             if (tileState[tId] != 'inactive')
                return;
 
             animate(front, 'rotate-y-forward-90', tileRotTime);
+            tileState[tId] = 'started-forward';
 
             setTimeout(function() {
                front.hide();
                back.show();
                animate(back, 'rotate-y-backwards-90', tileRotTime);
-               setTimeout(function() { tileState[tId] = 'flipped-ready'; }, tileRotTimeMilli);
+               setTimeout(function() {
+                  tileState[tId] = 'flipped-ready';
+                  function checkIfOut() {
+                     //if (!t.is(':hover'))
+                     if ($('#' + tId + ':hover').length == 0)
+                        onMoveOut(t, tId, front, back);
+                     else
+                        setTimeout(checkIfOut, checkIfOutTime);
+                  }
+                  checkIfOut();
+               }, tileRotTimeMilli);
             }, tileRotTimeMilli);
          }
+
          function onMoveOut(t, tId, front, back) {
             if (tileState[tId] != 'flipped-ready') {
-               setTimeout(function () { onMoveOut(t, tId, front, back); }, 400);
-               return;
+               /*setTimeout(function () { onMoveOut(t, tId, front, back); }, 400);
+               return;*/
             }
-
+            tileState[tId] = 'started-reverse';
             animate(back, 'rotate-y-forward-90', tileRotTime);
 
             setTimeout(function() {
@@ -186,8 +214,8 @@
             var front = $(obj).find('.tile-front');
             if (isHoverIn)
                onMoveIn(obj, objId, front, back);
-            else
-               onMoveOut(obj, objId, front, back);
+            /*else
+               onMoveOut(obj, objId, front, back);*/
          }
 
          $('.my-tile').hover(function() {
