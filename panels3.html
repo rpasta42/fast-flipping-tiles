@@ -118,6 +118,7 @@
          $('.my-tile').find('.tile-front').show();
          $('.my-tile').find('.tile-back').hide();
 
+         //old
          //inactive = default
          //rotating90 = started rotation
          //rotating180 = finsihed half rotation
@@ -127,6 +128,8 @@
          //inactive/finished = either use separate state, or just revert to inactive
          //status of rotation
          //(inactive, rotating90, rotating180, flipped_start, flipped-ready, reversing, inactive/finished)
+
+         //new statuses = [inactive, flipped-ready]
          var tileState = { 'left-tile':'inactive', 'right-tile':'inactive' };
 
          //t = hovered object, tId = 'left-tile' or 'right-tile'
@@ -144,13 +147,13 @@
             }, tileRotTimeMilli);
          }
          function onMoveOut(t, tId, front, back) {
-            //console.log('in');
-            //animate(back, 'rotate-y-backwards-90', tileRotTime);
             if (tileState[tId] != 'flipped-ready') {
                setTimeout(function () { onMoveOut(t, tId, front, back); }, 400);
                return;
             }
+
             animate(back, 'rotate-y-forward-90', tileRotTime);
+
             setTimeout(function() {
                back.hide();
                front.show();
