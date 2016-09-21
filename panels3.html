@@ -107,6 +107,12 @@
          transform:     translateX(-50%);
          font-size:     150%;
       }
+
+      .my-tile {
+         border-style:  solid;
+         border-width:  1px;
+         border-color:  #8495a1;
+      }
    </style>
 
    <style>
@@ -118,14 +124,26 @@
          to   {transform: rotateY(90deg); opacity: 0.1; filter: blur(3px);}
       }
       @keyframes rotate-y-backwards-90 {
-         from {transform: rotateY(90deg); opacity:0.0; filter:blur(3px); }
-         to   {transform: rotateY(0deg); opacity: 1; filter:blur(0px); }
+         from {transform: rotateY(90deg); opacity: 0.0; filter: blur(3px); }
+         to   {transform: rotateY(0deg); opacity: 1; filter: blur(0px); }
       }
+
+
+      @keyframes fade-out {
+         from {opacity:1; filter: blur(0px);}
+         to   {opacity:0.6; filter: blur(3px);}
+      }
+      @keyframes fade-in {
+         from {opacity:0.6; filter:blur(3px); }
+         to   {opacity:1; filter:blur(0px); }
+      }
+
    </style>
 
    <script>
       var checkIfOutTime = 150;//400;
       var tileRotTime = 0.2; //default:0.2; kinda slow: 0.5 //!!!USE 5.0 seconds for demo of fades
+      var fadeTime = 0.5;
       var tileRotTimeMilli = tileRotTime * 1000;
 
       function animate(el, animationName, duration) {
@@ -161,16 +179,32 @@
 
          //t = hovered object, tId = 'left-tile' or 'right-tile'
          function onMoveIn(t, tId, front, back) {
-            /*for (var tileId in tileState) {
+            for (var tileId in tileState) {
                if (tileState[tileId] != 'inactive') {
                   //return;
                   //setTimeout(function () { onMoveIn(t, tId, front, back); }, checkIfOutTime);
+                  function check() {
+                     if ($('#' + tId + ':hover').length != 0)
+                        onMoveIn(t, tId, front, back);
+                  }
+                  /*for (var i = 1; i < 2; i++) {
+                     setTimeout(check, checkIfOutTime*i);
+                  }*/
+                  setTimeout(check, checkIfOutTime*2);
+                  return;
                }
-            }*/
-            if (tileState[tId] != 'inactive')
-               return;
+            }
+            /*if (tileState[tId] != 'inactive')
+               return;*/
 
             animate(front, 'rotate-y-forward-90', tileRotTime);
+
+            if (tId == 'left-tile') {
+               animate($('#right-tile'), 'fade-out', fadeTime);
+            } else {
+               animate($('#left-tile'), 'fade-out', fadeTime);
+            }
+
             tileState[tId] = 'started-forward';
 
             setTimeout(function() {
@@ -198,6 +232,12 @@
             }
             tileState[tId] = 'started-reverse';
             animate(back, 'rotate-y-forward-90', tileRotTime);
+
+            if (tId == 'left-tile') {
+               animate($('#right-tile'), 'fade-in', fadeTime);
+            } else {
+               animate($('#left-tile'), 'fade-in', fadeTime);
+            }
 
             setTimeout(function() {
                back.hide();
