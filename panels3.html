@@ -21,10 +21,23 @@
          }, function() {
             $('.my-tile').removeClass(cName);
          });
+
+         /*function fixTileBack() {
+            $('.my-tile').each(function() }
+               var width = $(this).find('.tile-front').width();
+               $(this).find('.tile-back').width(width);
+            });
+         }
+         setTimeout(fixTileBack, 0);
+         setTimeout(fixTileBack, 100);*/
+
       });
    </script>
 
    <style>
+      body {
+         color:   #8495a1;
+      }
       #left-tile {
          position:      absolute;
          background-color:    /*#5bc0de;*/ #fafafa;
@@ -56,7 +69,6 @@
          filter:  none;*/
          cursor:  pointer;
       }
-
       body {
          /*padding:       0;
          margin:        0;*/
@@ -76,19 +88,24 @@
       #left-img-bottom {
          height:        20px;
       }
-      #right-img-top, #left-img-top {
+      #right-img-top, #left-img-top, #left-back-logo, #right-back-logo {
          /*width:         558px;
          height:        200px;*/
          max-height:    200px;
          max-width:     558px;
          width:         90%;
+         margin:        8px;
+         padding:       8px;
       }
       #left-img-bottom, #right-img-bottom {
          height:        100%;
       }
-      #left-img-top, #right-img-top {
-         margin:        8px;
-         padding:       8px;
+      .desc {
+         width:         350px;
+         position:      absolute;
+         left:          50%;
+         transform:     translateX(-50%);
+         font-size:     150%;
       }
    </style>
 
@@ -193,7 +210,10 @@
             <img class='tile-img' id='left-img-bottom' src='../assets/familycape/split-select/bus_scrot.png'>
          </div>
          <div class='tile-back'>
-            Left side
+            <img class='tile-img' id='left-back-logo' src='../assets/familycape/split-select/logo-businesscape.png'></br></br>
+            <div class='desc'>
+            At BusinessCape, we work with various-sized businesses to analyze costs and and optimize profits.
+            </div>
          </div>
       </div>
 
@@ -204,7 +224,10 @@
             <img class='tile-img' id='right-img-bottom' src='../assets/familycape/split-select/fam_scrot.png'>
          </div>
          <div class='tile-back'>
-            Right side
+            <img class='tile-img' id='right-back-logo' src='../assets/familycape/logo.png'></br></br>
+            <div class='desc'>
+               At FamilyCape, we specialize in working with families to minimize their debt, and pay it off as quickly as possible.
+            </div>
          </div>
       </div>
    </div>
