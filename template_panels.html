@@ -1,5 +1,4 @@
-<html>
-<head>
+<div id='kk-chooser' style='position:fixed;width:100%;height:100%;z-index:999000;top:0;left:0;display:none;'>
    <title>Welcome to BusinessCape/FamilyCape</title>
    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>
    <!-- Latest compiled and minified CSS -->
@@ -44,15 +43,15 @@
 
          var cookieVal = getCookie('isBusiness');
          if (cookieVal == '') {
+            $('#kk-chooser').show();
             //alert('not set');
-            //default
          }
          else {
             //alert('cookie: ' + cookieVal);
             if (cookieVal == 'true') {
                //window.location = 'http://businesscape.com/';
-               $('html').hide();
-               $('html').css('z-index', '-10000');
+               //$('#kk-chooser').hide();
+               //$('html').css('z-index', '-10000');
             }
             //if (cookieVal == 'false') window.location = 'https://familycape.com/';
          }
@@ -60,14 +59,14 @@
          var busId = '#btn-businesscape'; //'#left-tile'r
          var famId = '#btn-familycape'; //'#right-tile'
          $(busId).click(function() {
-            window.location = 'http://businesscape.com/';
-            //$('body').hide();
+            $('#kk-chooser').hide();
             setCookie('isBusiness', true, 1);
+            //window.location = 'http://businesscape.com/';
          });
          $(famId).click(function() {
             //setCookie('isBusiness', false, 1);
-            $('html').hide().css('z-index', '-1000');
-            //window.location = 'https://familycape.com/';
+            //$('html').hide().css('z-index', '-1000');
+            window.location = 'https://familycape.com/';
          });
 
          $('#btn-businesscape, #btn-familycape').addClass('btn-primary'); //btn-warning, btn-success
@@ -95,7 +94,8 @@
    </script>
 
    <style>
-      html, body {
+      .tile-front, .tile-back { height: 100%; }
+      #kk-chooser, #kk-body {
          color:   #8495a1;
          height:  100%;
          width:   100%;
@@ -144,10 +144,9 @@
          filter:  none;*/
          /*cursor:  pointer;*/
       }
-      body {
-         /*padding:       0;
-         margin:        0;*/
-         margin:        40px;
+      #kk-body {
+         padding:       0;
+         margin:        0;
          /*background-color:    #f1c954;*/
          background-color:    #eeeeee;
       }
@@ -351,8 +350,7 @@
          });
       });
    </script>
-</head>
-<body>
+<div id='kk-body'>
 
    <div id='top-text'>Select website to continue</div>
    <!-- <center style='color:#8495a1'>Select website to continue</center> -->
@@ -371,6 +369,13 @@
             <div class='desc-container'>
                <div class='desc-txt'>
                   At BusinessCape, we work with various-sized businesses to analyze costs and and optimize profits.
+
+                  2 Ways to Increase Profit!
+                  <ul>
+                     <li>Reduce Expenses</li>
+                     <li>Increase Revenue</li>
+                  </ul>
+                  We can help you reduce your debt and taxes.
                </div>
             </div>
          </div>
@@ -387,12 +392,13 @@
             <img class='tile-img' id='right-back-logo' src='https://familyape.com/assets/familycape/logo.png'></br></br>
             <div class='desc-container'>
                <div class='desc-txt'>
-                  At FamilyCape, we specialize in working with families to minimize their debt, and pay it off as quickly as possible.
+                  <!-- At FamilyCape, we specialize in working with families to minimize their debt, and pay it off as quickly as possible. -->
+                  We can show you how to get completely out of debt, including your mortgage, in 10 years or less without spending more than you’re currently spending.
                </div>
             </div>
          </div>
       </div>
    </div>
-</body>
-</html>
+</div>
+</div>
 

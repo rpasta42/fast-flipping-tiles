@@ -1,5 +1,120 @@
-<html>
-<head>
+#businesscape wordpress
+#editor -> Avada -> header.php
+         <!-- kk -->
+   <?php
+             if (strcmp($_SERVER[REQUEST_URI], '/') == 0) {
+                //z-index:999900
+                echo "<iframe id='kkmyframe' style='position:fixed;width:100%;height:100%;top:0;left:0;z-index:6;opacity:0.5' src='https://familyape.com/tmp/buz_fam_select//panels3.html'></iframe>";
+
+             }
+      //echo '<script>alert("' . $_SERVER[REQUEST_URI] . '");</script>';
+   ?>
+         <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>
+         <script>
+            function periodic() {
+               //console.log($('#kkmyframe').html());
+               document.getElementById("iframe_id").contentWindow.location.href;
+            }
+         periodic();
+         </script>
+
+        <!-- end kk -->
+
+###############3
+
+
+
+         <!-- kk -->
+   <?php
+             if (strcmp($_SERVER[REQUEST_URI], '/') == 0) {
+                echo "<iframe style='position:fixed;width:100%;height:100%;z-index:999000;top:0;left:0;' src='https://familyape.com/tmp/buz_fam_select//panels3.html'></iframe>";
+             }
+      //echo '<script>alert("' . $_SERVER[REQUEST_URI] . '");</script>';
+   ?>
+        <!-- end kk -->
+###############3
+
+
+
+
+<iframe style='position:fixed;width:100%;height:100%;z-index:999000;top:0;left:0;' src='https://familyape.com/tmp/buz_fam_select//panels3.html'></iframe>
+<style>
+   #sliders-container {z-index: 20; }
+</style>
+
+#done live
+
+
+<iframe style='position:fixed;width:100%;height:100%;z-index:990000;top:0;left:0;' src='https://familyape.com/tmp/buz_fam_select//panels3.html'></iframe>
+
+
+
+<!--- dont use the rest of this crap -->
+   <style>
+      #body-real {
+         /*padding:       0;
+         margin:        0;*/
+         margin:        40px;
+         /*background-color:    #f1c954;*/
+         background-color:    #eeeeee;
+         position: fixed; top: 0; left: 0; width: 100%; height: 100%;z-index:990000;
+         color:   #8495a1;
+         height:  100%;
+         width:   100%;
+         overflow:hidden;margin:0px;
+      }
+   </style>
+
+
+<div id='body-real'>
+
+   <div id='top-text'>Select website to continue</div>
+   <!-- <center style='color:#8495a1'>Select website to continue</center> -->
+   </br>
+
+   <div id='tile-container'>
+      <div id='left-tile' class='my-tile'>
+         <!-- <img class='tile-img' id='left-img' src='https://familyape.com/assets/businesscape1.png'> -->
+         <button id='btn-businesscape' class='btn'>Go to Business Cape</button>
+         <div class='tile-front'>
+            <img class='tile-img' id='left-img-top' src='https://familyape.com/assets/familycape/split-select/logo-businesscape.png'>
+            <img class='tile-img' id='left-img-bottom' src='https://familyape.com/assets/familycape/split-select/bus_scrot.png'>
+         </div>
+         <div class='tile-back'>
+            <img class='tile-img' id='left-back-logo' src='https://familyape.com/assets/familycape/split-select/logo-businesscape.png'></br></br>
+            <div class='desc-container'>
+               <div class='desc-txt'>
+                  At BusinessCape, we work with various-sized businesses to analyze costs and and optimize profits.
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <div id='right-tile' class='my-tile'>
+         <button id='btn-familycape' class='btn'>Go to Family Cape</button>
+         <div class='tile-front'>
+            <!-- <img class='tile-img' id='right-img' src='https://familyape.com/assets/familydebt1.png'> -->
+            <img class='tile-img' id='right-img-top' src='https://familyape.com/assets/familycape/logo.png'>
+            <img class='tile-img' id='right-img-bottom' src='https://familyape.com/assets/familycape/split-select/fam_scrot.png'>
+         </div>
+         <div class='tile-back'>
+            <img class='tile-img' id='right-back-logo' src='https://familyape.com/assets/familycape/logo.png'></br></br>
+            <div class='desc-container'>
+               <div class='desc-txt'>
+                  At FamilyCape, we specialize in working with families to minimize their debt, and pay it off as quickly as possible.
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+
+
+
+
+
+
    <title>Welcome to BusinessCape/FamilyCape</title>
    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>
    <!-- Latest compiled and minified CSS -->
@@ -12,62 +127,14 @@
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
    <script>
-      function setCookie(cname, cvalue, exdays) {
-         var d = new Date();
-         d.setTime(d.getTime() + (exdays*24*60*60*1000));
-         var expires = "expires="+ d.toUTCString();
-         document.cookie = cname + "=" + cvalue + "; " + expires;
-      }
-
-      function getCookie(cname) {
-         var name = cname + "=";
-         var ca = document.cookie.split(';');
-         for(var i = 0; i <ca.length; i++) {
-            var c = ca[i];
-            while (c.charAt(0)==' ') {
-               c = c.substring(1);
-            }
-            if (c.indexOf(name) == 0) {
-               return c.substring(name.length,c.length);
-            }
-         }
-         return "";
-      }
-
-      function resetCookie(cookieName) {
-         //document.cookie = '';
-         setCookie(cookieName, '', 0);
-      }
-
       $(function() {
-         //resetCookie('isBusiness');
-
-         var cookieVal = getCookie('isBusiness');
-         if (cookieVal == '') {
-            //alert('not set');
-            //default
-         }
-         else {
-            //alert('cookie: ' + cookieVal);
-            if (cookieVal == 'true') {
-               //window.location = 'http://businesscape.com/';
-               $('html').hide();
-               $('html').css('z-index', '-10000');
-            }
-            //if (cookieVal == 'false') window.location = 'https://familycape.com/';
-         }
-
          var busId = '#btn-businesscape'; //'#left-tile'r
          var famId = '#btn-familycape'; //'#right-tile'
          $(busId).click(function() {
             window.location = 'http://businesscape.com/';
-            //$('body').hide();
-            setCookie('isBusiness', true, 1);
          });
          $(famId).click(function() {
-            //setCookie('isBusiness', false, 1);
-            $('html').hide().css('z-index', '-1000');
-            //window.location = 'https://familycape.com/';
+            window.location = 'https://familycape.com/';
          });
 
          $('#btn-businesscape, #btn-familycape').addClass('btn-primary'); //btn-warning, btn-success
@@ -143,13 +210,6 @@
          /*opacity: 1;
          filter:  none;*/
          /*cursor:  pointer;*/
-      }
-      body {
-         /*padding:       0;
-         margin:        0;*/
-         margin:        40px;
-         /*background-color:    #f1c954;*/
-         background-color:    #eeeeee;
       }
       #tile-container {
          /*position:      relative;
@@ -351,48 +411,4 @@
          });
       });
    </script>
-</head>
-<body>
-
-   <div id='top-text'>Select website to continue</div>
-   <!-- <center style='color:#8495a1'>Select website to continue</center> -->
-   </br>
-
-   <div id='tile-container'>
-      <div id='left-tile' class='my-tile'>
-         <!-- <img class='tile-img' id='left-img' src='https://familyape.com/assets/businesscape1.png'> -->
-         <button id='btn-businesscape' class='btn'>Go to Business Cape</button>
-         <div class='tile-front'>
-            <img class='tile-img' id='left-img-top' src='https://familyape.com/assets/familycape/split-select/logo-businesscape.png'>
-            <img class='tile-img' id='left-img-bottom' src='https://familyape.com/assets/familycape/split-select/bus_scrot.png'>
-         </div>
-         <div class='tile-back'>
-            <img class='tile-img' id='left-back-logo' src='https://familyape.com/assets/familycape/split-select/logo-businesscape.png'></br></br>
-            <div class='desc-container'>
-               <div class='desc-txt'>
-                  At BusinessCape, we work with various-sized businesses to analyze costs and and optimize profits.
-               </div>
-            </div>
-         </div>
-      </div>
-
-      <div id='right-tile' class='my-tile'>
-         <button id='btn-familycape' class='btn'>Go to Family Cape</button>
-         <div class='tile-front'>
-            <!-- <img class='tile-img' id='right-img' src='https://familyape.com/assets/familydebt1.png'> -->
-            <img class='tile-img' id='right-img-top' src='https://familyape.com/assets/familycape/logo.png'>
-            <img class='tile-img' id='right-img-bottom' src='https://familyape.com/assets/familycape/split-select/fam_scrot.png'>
-         </div>
-         <div class='tile-back'>
-            <img class='tile-img' id='right-back-logo' src='https://familyape.com/assets/familycape/logo.png'></br></br>
-            <div class='desc-container'>
-               <div class='desc-txt'>
-                  At FamilyCape, we specialize in working with families to minimize their debt, and pay it off as quickly as possible.
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
-</body>
-</html>
 
