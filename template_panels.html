@@ -94,6 +94,9 @@
    </script>
 
    <style>
+      #tile-container {
+         z-index: 55;
+      }
       .tile-front, .tile-back { height: 100%; }
       #kk-chooser, #kk-body {
          color:   #8495a1;
@@ -356,7 +359,7 @@
    <!-- <center style='color:#8495a1'>Select website to continue</center> -->
    </br>
 
-   <div id='tile-container'>
+   <div id='tile-container' style='z-index:10;'>
       <div id='left-tile' class='my-tile'>
          <!-- <img class='tile-img' id='left-img' src='https://familyape.com/assets/businesscape1.png'> -->
          <button id='btn-businesscape' class='btn'>Go to Business Cape</button>
